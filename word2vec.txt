@@ -1,0 +1,19 @@
+﻿class method
+    def word_vec(self):
+        sentences = word2vec.LineSentence("setences.txt")#所有的句子
+        model1 = word2vec.Word2Vec(sentences,size=50, window=5, min_count=1)
+        f1 = open("word.txt", encoding='utf-8')#句子中所有的词
+        f2 = open("fw.txt", 'a', encoding='utf-8')#保存生成的词向量文件
+        l1 = f1.readlines()
+        for i in l1:
+            st = i.strip()
+            # print(model1[str])
+            ll = model1[st].tolist()
+            sl = [str(j) for j in ll]
+            s = ' '.join(sl)
+            f2.write(st+'\t'+s)
+            f2.write('\n')
+		model1.save("my_model.model")
+if __name__ == '__main__':
+    m = method()
+	m.word_vec()
